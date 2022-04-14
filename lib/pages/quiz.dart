@@ -25,16 +25,11 @@ class _QuizState extends State<Quiz> {
 
     quiz.add({
       "pergunta": "O Flutter é:",
-      "respostas": [
-        "Uma linguagem",
-        "Um aplicativo",
-        "Um SDK",
-        "Um notebook"
-      ],
+      "respostas": ["Uma linguagem", "Um aplicativo", "Um SDK", "Um notebook"],
       "alternativa_correta": 3
     });
 
-    debugPrint('Dados do Quiz');
+    int perguntaNumero = 1;
 
     return MaterialApp(
       home: Scaffold(
@@ -48,45 +43,63 @@ class _QuizState extends State<Quiz> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              const Align(
-                  alignment: Alignment.topRight,
-                  child: Text('Pergunta 1 de 10')),
-              const Text('Pergunta'),
-              ElevatedButton(
-                onPressed: () => debugPrint('Pressionado 1'),
-                child: const Text(
-                  'Resposta 1',
-                  style: TextStyle(fontSize: 20),
-                ),
-                style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.fromLTRB(100, 20, 100, 20)),
+              Align(
+                alignment: Alignment.topRight,
+                child: Text('Pergunta $perguntaNumero de 10'),
               ),
-              ElevatedButton(
-                onPressed: () => debugPrint('Pressionado 2'),
-                child: const Text(
-                  'Resposta 2',
-                  style: TextStyle(fontSize: 20),
+              Text('Pergunta: ${quiz[perguntaNumero - 1]["pergunta"]}',
+                  style: const TextStyle(fontSize: 20)),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () =>
+                      debugPrint('${quiz[perguntaNumero - 1]["respostas"][0]}'),
+                  child: Text(
+                    '${quiz[perguntaNumero - 1]["respostas"][0]}',
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.fromLTRB(100, 20, 100, 20)),
                 ),
-                style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.fromLTRB(100, 20, 100, 20)),
               ),
-              ElevatedButton(
-                onPressed: () => debugPrint('Pressionado 3'),
-                child: const Text(
-                  'Resposta 3',
-                  style: TextStyle(fontSize: 20),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () =>
+                      debugPrint('${quiz[perguntaNumero - 1]["respostas"][1]}'),
+                  child: Text(
+                    '${quiz[perguntaNumero - 1]["respostas"][1]}',
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.fromLTRB(100, 20, 100, 20)),
                 ),
-                style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.fromLTRB(100, 20, 100, 20)),
               ),
-              ElevatedButton(
-                onPressed: () => debugPrint('Pressionado 4'),
-                child: const Text(
-                  'Resposta 4',
-                  style: TextStyle(fontSize: 20),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () =>
+                      debugPrint('${quiz[perguntaNumero - 1]["respostas"][2]}'),
+                  child: Text(
+                    '${quiz[perguntaNumero - 1]["respostas"][2]}',
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.fromLTRB(100, 20, 100, 20)),
                 ),
-                style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.fromLTRB(100, 20, 100, 20)),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () =>
+                      debugPrint('${quiz[perguntaNumero - 1]["respostas"][3]}'),
+                  child: Text(
+                    '${quiz[perguntaNumero - 1]["respostas"][3]}',
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.fromLTRB(100, 20, 100, 20)),
+                ),
               ),
             ],
           ),
