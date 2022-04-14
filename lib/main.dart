@@ -20,9 +20,7 @@ class MyApp extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const FlutterLogo(
-              size: 300,
-            ),
+            Image.asset('assets/images/logo.png'),
             ElevatedButton(
               onPressed: () => debugPrint('Oi'),
               child: const Text('JOGAR',style: TextStyle(fontSize: 20),),
