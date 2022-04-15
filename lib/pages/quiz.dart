@@ -1,37 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:quizapp/pages/resultado.dart';
+import 'package:quizapp/date/quiz_dados.dart';
 
 class Quiz extends StatefulWidget {
-  const Quiz({Key? key}) : super(key: key);
+  final List? quiz;
+
+  const Quiz({Key? key, this.quiz}) : super(key: key);
 
   @override
   State<Quiz> createState() => _QuizState();
 }
 
 class _QuizState extends State<Quiz> {
+  int perguntaNumero = 1;
+  int acertos = 0;
+  int erros = 0;
+
   @override
   Widget build(BuildContext context) {
-    List quiz = [
-      {
-        "pergunta": "Quem descobriu o Brasil?",
-        "respostas": [
-          "Dom Pedro I",
-          "Pedro Álvares Cabral",
-          "Tiradentes",
-          "Dom Pedro II"
-        ],
-        "alternativa_correta": 2
-      }
-    ];
+    quiz.shuffle();
 
-    quiz.add({
-      "pergunta": "O Flutter é:",
-      "respostas": ["Uma linguagem", "Um aplicativo", "Um SDK", "Um notebook"],
-      "alternativa_correta": 3
-    });
+    void respondeu(int respostaNumero) {
+      setState(() {
+        if (quiz[perguntaNumero - 1]['alternativa_correta'] == respostaNumero) {
+          acertos++;
+        } else {
+          erros++;
+        }
 
-    int perguntaNumero = 1;
+        debugPrint('acertos totais: $acertos erros totais: $erros');
+
+        if (perguntaNumero == 10) {
+          debugPrint('Terminou o Quiz');
+          Navigator.pushNamed(context, 'resultados',
+              arguments: Argumentos(acertos));
+        } else {
+          perguntaNumero++;
+        }
+      });
+    }
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: const Center(
@@ -52,8 +62,10 @@ class _QuizState extends State<Quiz> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () =>
-                      debugPrint('${quiz[perguntaNumero - 1]["respostas"][0]}'),
+                  onPressed: () {
+                    debugPrint('${quiz[perguntaNumero - 1]["respostas"][0]} ');
+                    respondeu(1);
+                  },
                   child: Text(
                     '${quiz[perguntaNumero - 1]["respostas"][0]}',
                     style: const TextStyle(fontSize: 20),
@@ -65,8 +77,10 @@ class _QuizState extends State<Quiz> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () =>
-                      debugPrint('${quiz[perguntaNumero - 1]["respostas"][1]}'),
+                  onPressed: () {
+                    debugPrint('${quiz[perguntaNumero - 1]["respostas"][1]}');
+                    respondeu(2);
+                  },
                   child: Text(
                     '${quiz[perguntaNumero - 1]["respostas"][1]}',
                     style: const TextStyle(fontSize: 20),
@@ -78,8 +92,10 @@ class _QuizState extends State<Quiz> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () =>
-                      debugPrint('${quiz[perguntaNumero - 1]["respostas"][2]}'),
+                  onPressed: () {
+                    debugPrint('${quiz[perguntaNumero - 1]["respostas"][2]}');
+                    respondeu(3);
+                  },
                   child: Text(
                     '${quiz[perguntaNumero - 1]["respostas"][2]}',
                     style: const TextStyle(fontSize: 20),
@@ -91,8 +107,10 @@ class _QuizState extends State<Quiz> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () =>
-                      debugPrint('${quiz[perguntaNumero - 1]["respostas"][3]}'),
+                  onPressed: () {
+                    debugPrint('${quiz[perguntaNumero - 1]["respostas"][3]}');
+                    respondeu(4);
+                  },
                   child: Text(
                     '${quiz[perguntaNumero - 1]["respostas"][3]}',
                     style: const TextStyle(fontSize: 20),
